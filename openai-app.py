@@ -4,8 +4,8 @@ import speech_recognition as sr
 import openai
 
 # Set your OpenAI API key
-openai.api_key = st.secrets["openai_api_key"]
-
+#openai.api_key = st.secrets["openai_api_key"] 
+openai.api_key = "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"
 def audio_to_text(audio_path):
     sound = AudioSegment.from_file(audio_path)
     r = sr.Recognizer()
