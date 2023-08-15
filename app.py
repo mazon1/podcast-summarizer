@@ -1,46 +1,49 @@
 import streamlit as st
-from pydub import AudioSegment
-import speech_recognition as sr
-import openai
-import tempfile
+import requests
+import os
 
-# Set your OpenAI API key
-#openai.api_key = st.secrets["openai_api_key"]
-openai.api_key = "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"
+# Retrieve the OpenAI API key from the secret
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
-def audio_to_text(audio_path):
-    sound = AudioSegment.from_mp3(audio_path)
-    r = sr.Recognizer()
-    with sr.AudioFile(audio_path) as source:
-        audio_data = source.record(sound)
-        audio_text = r.recognize_google(audio_data=audio_data)
-    return audio_text
-
-def summarize_podcast(podcast_text):
-    prompt = f"Summarize the following podcast:\n{podcast_text}"
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=prompt,
-        max_tokens=150
-    )
-    summary = response.choices[0].text.strip()
-    return summary
-
+# Streamlit App
 def main():
     st.title("Podcast Summarizer")
-    st.write("Upload a podcast audio file (in MP3 format) for summarization.")
-    uploaded_file = st.file_uploader("Choose an MP3 file", type="mp3")
+
+    st.write("Upload a podcast audio file for summarization.")
+    
+    uploaded_file = st.file_uploader("Choose a podcast audio file", type=["mp3", "wav"])
 
     if uploaded_file:
-        st.audio(uploaded_file, format='audio/mp3')
+        st.audio(uploaded_file, format="audio/wav")
 
         if st.button("Summarize"):
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
-                tmp_file.write(uploaded_file.read())
-            podcast_text = audio_to_text(tmp_file.name)
-            summary = summarize_podcast(podcast_text)
-            st.write("Podcast Summary:")
-            st.write(summary)
+            st.write("Summarizing...")
+            
+            # Prepare data for API call
+            audio_path = os.path.join("temp", uploaded_file.name)
+            uploaded_file.seek(0)
+            with open(audio_path, "wb") as f:
+                f.write(uploaded_file.read())
+            
+            # Call the backend API for information extraction and summarization
+            response = requests.post(BACKEND_API_ENDPOINT, files={"audio": open(audio_path, "rb")})
+            
+            if response.status_code == 200:
+                data = response.json()
+                transcript = data["transcript"]
+                extracted_info = data["extracted_info"]
+                summary = data["summary"]
+                
+                st.write("Podcast Transcript:")
+                st.write(transcript)
+                
+                st.write("Extracted Information:")
+                st.write(extracted_info)
+                
+                st.write("Podcast Summary:")
+                st.write(summary)
+            else:
+                st.write("An error occurred during summarization.")
 
 if __name__ == "__main__":
     main()
