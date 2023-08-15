@@ -1,12 +1,13 @@
 
-# Podcast Summarizer using OpenAI and Streamlit
 
-This project is a podcast summarizer that uses OpenAI's API for Automatic Speech Recognition (ASR) and Streamlit for deployment. It allows you to upload a podcast audio file (in M4A format), convert it to text using ASR, and then generate a summary of the podcast transcript.
+# Podcast Summarizer using Hugging Face Models and Streamlit
+
+This project is a podcast summarizer that uses Hugging Face models for Automatic Speech Recognition (ASR) and Streamlit for deployment. It allows you to upload a podcast audio file (in M4A format), convert it to text using ASR, and then generate a summary of the podcast transcript.
 
 ## Features
 
 - Upload a podcast audio file in M4A format.
-- Convert audio to text using OpenAI's ASR API.
+- Convert audio to text using Hugging Face's ASR pipeline.
 - Generate a summary of the podcast transcript.
 - Display the original podcast transcript and its summary.
 
@@ -17,13 +18,13 @@ To run the project locally, follow these steps:
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/mazon1/podcast-summarizer.git
+git clone https://github.com/yourusername/podcast-summarizer.git
 ```
 
 2. Install the required dependencies.
 
 ```bash
-pip install streamlit openai
+pip install streamlit transformers torchaudio
 ```
 
 3. Run the Streamlit app.
@@ -54,7 +55,7 @@ streamlit run app.py
 ## Dependencies
 
 - [Streamlit](https://www.streamlit.io/)
-- [OpenAI](https://platform.openai.com/)
+- [Hugging Face Transformers](https://huggingface.co/transformers)
 - [torchaudio](https://pytorch.org/audio/stable/index.html)
 
 ## License
@@ -63,8 +64,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- The OpenAI team for their API services.
+- The Hugging Face team for their amazing models and pipelines.
 - The Streamlit community for the user-friendly app framework.
 
 Feel free to modify and extend this README file to include more details about your project, deployment options, and additional features.
-```
