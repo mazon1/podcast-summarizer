@@ -24,7 +24,8 @@ def main():
             # Prepare data for API call
             audio_path = os.path.join("temp", uploaded_file.name)
             uploaded_file.seek(0)
-            with open(audio_path, "wb") as f:
+            with open(audio_path, "wb+") as f:
+            #with open(audio_path, "wb") as f:
                 f.write(uploaded_file.read())
             
             # Call the backend API for information extraction and summarization
