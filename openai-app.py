@@ -2,12 +2,14 @@ import streamlit as st
 from pydub import AudioSegment
 import speech_recognition as sr
 import openai
+import tempfile
 
 # Set your OpenAI API key
-#openai.api_key = st.secrets["openai_api_key"] 
+#openai.api_key = st.secrets["openai_api_key"]
 openai.api_key = "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"
+
 def audio_to_text(audio_path):
-    sound = AudioSegment.from_file(audio_path)
+    sound = AudioSegment.from_mp3(audio_path)
     r = sr.Recognizer()
     with sr.AudioFile(audio_path) as source:
         audio_data = source.record(sound)
@@ -26,14 +28,16 @@ def summarize_podcast(podcast_text):
 
 def main():
     st.title("Podcast Summarizer")
-    st.write("Upload a podcast audio file (in WAV format) for summarization.")
-    uploaded_file = st.file_uploader("Choose a WAV file", type="wav")
+    st.write("Upload a podcast audio file (in MP3 format) for summarization.")
+    uploaded_file = st.file_uploader("Choose an MP3 file", type="mp3")
 
     if uploaded_file:
-        st.audio(uploaded_file, format='audio/wav')
+        st.audio(uploaded_file, format='audio/mp3')
 
         if st.button("Summarize"):
-            podcast_text = audio_to_text(uploaded_file)
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                tmp_file.write(uploaded_file.read())
+            podcast_text = audio_to_text(tmp_file.name)
             summary = summarize_podcast(podcast_text)
             st.write("Podcast Summary:")
             st.write(summary)
