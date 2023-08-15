@@ -3,7 +3,9 @@ import requests
 import os
 
 # Retrieve the OpenAI API key from the secret
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+#OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+OPENAI_API_KEY = "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" 
+
 
 # Streamlit App
 def main():
