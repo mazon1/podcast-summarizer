@@ -18,7 +18,7 @@ To run the project locally, follow these steps:
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/yourusername/podcast-summarizer.git
+git clone https://github.com/mazon1/podcast-summarizer.git
 ```
 
 2. Install the required dependencies.
