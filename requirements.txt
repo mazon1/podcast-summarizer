@@ -4,7 +4,7 @@ torchaudio
 openai
 pydub
 SpeechRecognition
-dotenv
+
 requests
 json
 urllib
