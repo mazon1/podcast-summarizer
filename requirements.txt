@@ -4,9 +4,7 @@ torchaudio
 openai
 pydub
 SpeechRecognition
-
 requests
-json==23.2.1
 urllib
 pydub
 spotify
