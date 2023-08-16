@@ -8,8 +8,8 @@ from gpt3summarizer import GPT3Summarizer
 # Load API credentials from .env file
 load_dotenv()
 
-SPOTIFY_CLIENT_ID =  os.getenv("SPOTIFY_CLIENT_ID")
-SPOTIFY_CLIENT_SECRET =  os.getenv("SPOTIFY_CLIENT_SECRET")
+# SPOTIFY_CLIENT_ID =  os.getenv("SPOTIFY_CLIENT_ID")
+# SPOTIFY_CLIENT_SECRET =  os.getenv("SPOTIFY_CLIENT_SECRET")
 OPENAI_API_KEY =  os.getenv("OPENAI_API_KEY")
 
 OUTPUT = ['downloads/youtube', 'downloads/spotify', 'downloads/whisper',  'downloads/gpt3']
@@ -36,11 +36,11 @@ def summarize(podcast_url, source, max_sentences=10):
 
         file_id = metadata['id']
         
-    elif source == "spotify":
+    # elif source == "spotify":
     
-        podcast = SpotifyPodcast(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
-        file_id = podcast.get_episode_id(podcast_url)
-        audio_path = podcast.download_episode(podcast_url)
+    #     podcast = SpotifyPodcast(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+    #     file_id = podcast.get_episode_id(podcast_url)
+    #     audio_path = podcast.download_episode(podcast_url)
     
     transcriber = WhisperTranscriber(OPENAI_API_KEY)
     transcript = transcriber.transcribe(audio_path)
