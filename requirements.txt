@@ -4,3 +4,4 @@ torchaudio
 openai
 pydub
 SpeechRecognition
+ffmpeg
