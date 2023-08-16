@@ -9,7 +9,7 @@ requests
 json
 urllib
 pydub
-spotipy
+spotify
 openai
 tiktoken
 youtube_dl
