@@ -6,7 +6,7 @@ import requests
 import os
 
 # Retrieve the OpenAI API key from the secret
-#OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+#OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 
