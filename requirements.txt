@@ -4,5 +4,12 @@ torchaudio
 openai
 pydub
 SpeechRecognition
-ffmpeg
-ffprobe
+dotenv
+requests
+json
+urllib
+pydub
+spotipy
+openai
+tiktoken
+youtube_dl
