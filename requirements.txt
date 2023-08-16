@@ -6,10 +6,11 @@ pydub
 SpeechRecognition
 
 requests
-json
+json==23.2.1
 urllib
 pydub
 spotify
 openai
 tiktoken
 youtube_dl
+dotenv
