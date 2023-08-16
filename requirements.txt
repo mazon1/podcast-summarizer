@@ -1,14 +1,9 @@
-streamlit
-transformers
-torchaudio
-openai
-pydub
-SpeechRecognition
+dotenv
 requests
+json
 urllib
 pydub
-spotify
+spotipy
 openai
 tiktoken
 youtube_dl
-dotenv
